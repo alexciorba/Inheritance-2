@@ -4,14 +4,21 @@ public class Auto {
 
     private String nrInmatriculare;
     private int nrRoti;
-    private String tipPermis;
+    private String tipAuto;
     private double greutate;
 
-    public Auto(String nrInmatriculare,int nrRoti,String tipPermis,double greutate){
+    public Auto(String nrInmatriculare, int nrRoti, String tipAuto, double greutate){
         this.greutate=greutate;
         this.nrInmatriculare=nrInmatriculare;
         this.nrRoti=nrRoti;
-        this.tipPermis=tipPermis;
+        this.tipAuto = tipAuto;
+    }
+    public Auto(String line){
+        this(line.split(",")[0],
+                Integer.parseInt(line.split(",")[1]),
+                line.split(",")[2],
+                Double.parseDouble(line.split(",")[3])
+                );
     }
 
     public void setGreutate(double greutate) {
@@ -26,8 +33,8 @@ public class Auto {
         this.nrRoti = nrRoti;
     }
 
-    public void setTipPermis(String tipPermis) {
-        this.tipPermis = tipPermis;
+    public void setTipAuto(String tipAuto) {
+        this.tipAuto = tipAuto;
     }
 
     public double getGreutate() {
@@ -42,16 +49,21 @@ public class Auto {
         return this.nrInmatriculare;
     }
 
-    public String getTipPermis() {
-        return this.tipPermis;
+    public String getTipAuto() {
+        return this.tipAuto;
     }
 
     public String descriereAuto(){
         String text="";
         text+="Nr inmatriculare : " + nrInmatriculare + "\n";
         text+="Nr roti : " + nrRoti + "\n";
-        text+="tip permis : " + tipPermis + "\n";
+        text+="tip permis : " + tipAuto + "\n";
         text+="greutate : " + greutate + "\n";
+        return text;
+    }
+    public String toSave(){
+        String text="";
+        text+=nrInmatriculare + "," + nrRoti + "," + tipAuto + "," + greutate;
         return text;
     }
 }
